@@ -2,13 +2,13 @@
   "platformRequirements": {
     "glibcMin": "2.34"
   },
-  "version": "0.1.12",
+  "version": "0.1.13",
   "target": "x86_64-unknown-linux-gnu",
-  "sourceCommit": "bc10d1e2d5d4cc7064152de422889cb46a730ff0",
+  "sourceCommit": "26d48d58e8ec6f2fc3606a70b09ceb0aecb8e49a",
   "sourceDirty": false,
   "rustc": "rustc 1.92.0 (ded5c06cf 2025-12-08)",
-  "binarySha256": "41ff4baec8cf0db346129cac5d4ebcaebcf66bd9f5c2eeea93b02d37b80c0f96",
-  "binaryBytes": 782648,
+  "binarySha256": "513b17246589efd405644d2eb02563a7318e9101cdec26cfc6df2cf0f11df15b",
+  "binaryBytes": 783104,
   "nodeUnicode": "16.0",
   "licenses": {
     "licenses/itoa-1.0.16/LICENSE-APACHE": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a",

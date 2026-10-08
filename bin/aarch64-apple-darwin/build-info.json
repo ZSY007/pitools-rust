@@ -1,12 +1,12 @@
 {
   "platformRequirements": {},
-  "version": "0.1.12",
+  "version": "0.1.13",
   "target": "aarch64-apple-darwin",
-  "sourceCommit": "bc10d1e2d5d4cc7064152de422889cb46a730ff0",
+  "sourceCommit": "26d48d58e8ec6f2fc3606a70b09ceb0aecb8e49a",
   "sourceDirty": false,
   "rustc": "rustc 1.92.0 (ded5c06cf 2025-12-08)",
-  "binarySha256": "9be6c6f201c5a5254af736c5707a188276d36f78106d3e3c0cee159aa0e02065",
-  "binaryBytes": 671792,
+  "binarySha256": "2e85fef60b803482adbf6e8ff4731be819860c17bfc3e7e8b8f76ca8f509e9d2",
+  "binaryBytes": 671808,
   "nodeUnicode": "16.0",
   "licenses": {
     "licenses/itoa-1.0.16/LICENSE-APACHE": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a",

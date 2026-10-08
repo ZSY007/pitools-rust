@@ -1,11 +1,11 @@
 {
   "platformRequirements": {},
-  "version": "0.1.12",
+  "version": "0.1.13",
   "target": "x86_64-pc-windows-msvc",
-  "sourceCommit": "bc10d1e2d5d4cc7064152de422889cb46a730ff0",
+  "sourceCommit": "26d48d58e8ec6f2fc3606a70b09ceb0aecb8e49a",
   "sourceDirty": false,
   "rustc": "rustc 1.92.0 (ded5c06cf 2025-12-08)",
-  "binarySha256": "b048e76d7e062d687a899c93f34efc5bbfd569338262d5beb91cdb4f5655d4ce",
+  "binarySha256": "6e5a85b7fa5d6d4a22490a72c0ec16ad0c68e1a6d857805204ad295d3a129839",
   "binaryBytes": 582144,
   "nodeUnicode": "16.0",
   "licenses": {

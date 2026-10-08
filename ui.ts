@@ -6,7 +6,7 @@ import { renderDetail, detailThemeKey, RENDERER_VERSION } from './rendering.ts';
 import { ActivityState, normalizeActivity, restoreActivityConfig, narrationContract, FRAME_NAMES, ACTIVITY_VERSION, ACTIVITY_DATA_VERSION } from './activity.ts';
 import { ActivityCore, PYTHON_CORE_VERSION, RUST_CORE_VERSION } from './python-core.ts';
 
-const VERSION = '0.1.12';
+const VERSION = '0.1.13';
 
 export default function pitools(pi: ExtensionAPI, options: { edition?: 'development' | 'ts' | 'python' | 'rust' } = {}) {
   const edition = options.edition ?? 'development';
@@ -127,8 +127,9 @@ export default function pitools(pi: ExtensionAPI, options: { edition?: 'developm
   function titleLine(theme: Theme, width: number, title: string, compact: string) {
     const text = activity.line(Date.now());
     if (!text) return theme.fg('accent', truncateToWidth(title, width));
-    const markerColor = activity.failed ? 'error' : activity.phase === 'done' ? 'success' : 'muted';
-    const marker = theme.fg(markerColor, '●');
+    const marker = activity.failed ? theme.fg('error', '●')
+      : activity.phase === 'done' ? theme.fg('success', '●')
+      : color(theme, 'input', '●'); // Idle/running blue, matching the input lane.
     if (width < 3) return marker;
     const lineWidth = width - 2; // One column for the dot, one for its space.
     const separator = '  │  ';
@@ -353,7 +354,7 @@ export default function pitools(pi: ExtensionAPI, options: { edition?: 'developm
     if (!isTui(ctx)) return;
     const parts = args.trim().toLowerCase().split(/\s+/).filter(Boolean);
     if (!parts.length || parts[0] === 'help') {
-      ctx.ui.notify(`首行左侧活动：${json(activity.config)}\n/pitools activity on|off；frames <预设>|list（35 种 + random）；lang zh|en|auto；narrate|contract|phrases on|off。偏好只保存到当前会话分支。`, 'info'); return;
+      ctx.ui.notify(`首行左侧活动：${json(activity.config)}\n/pitools activity on|off；frames <预设>|list（默认 pi 点阵，另有 35 种 + random）；lang zh|en|auto；narrate|contract|phrases on|off。偏好只保存到当前会话分支。`, 'info'); return;
     }
     if (parts[0] === 'frames' && (!parts[1] || parts[1] === 'list')) { ctx.ui.notify(`帧预设：random, ${FRAME_NAMES.join(', ')}`, 'info'); return; }
     const config = { ...activity.config };

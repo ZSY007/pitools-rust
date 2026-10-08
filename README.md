@@ -1,6 +1,6 @@
 # pitools-rust
 
-[![version](https://img.shields.io/badge/version-0.1.12-blue)](https://github.com/ZSY007/pitools-rust/releases/tag/v0.1.12)
+[![version](https://img.shields.io/badge/version-0.1.13-blue)](https://github.com/ZSY007/pitools-rust/releases/tag/v0.1.13)
 [![license](https://img.shields.io/badge/license-BSD--3--Clause-green)](LICENSE)
 
 **Pi 终端里的任务轨迹、完整工具详情与实时工作状态 · Rust 版。**
@@ -13,7 +13,7 @@
 
 - 浏览输入、可见思考、模型回复和工具调用，支持跟随最新事件与历史回放。
 - 查看概述、原始参数、完整结果、可用的 Schema 和计时；支持搜索、代码高亮、Markdown 与原始 JSON 切换。
-- 显示月相动画、阶段短语、可见回复旁白、并行工具和完成统计。
+- 显示 π 点阵动画、阶段短语、可见回复旁白、并行工具和完成统计。
 - 宽屏左右分栏、窄屏上下排列，使用 Pi 原生主题，不替换编辑器、页脚或工作行。
 
 三版界面与快捷键一致，**只选一个安装**。版本选择见 [主项目](https://github.com/ZSY007/pitools#选择一个版本)。
@@ -61,7 +61,7 @@ pi install git:github.com/ZSY007/pitools-rust
 
 ### 本地归档安装
 
-在 [Release](https://github.com/ZSY007/pitools-rust/releases/tag/v0.1.12) 下载 `pitools-rust-0.1.12.tgz`，按 `SHA256SUMS` 校验后解压到稳定目录，再 `pi install /absolute/path/pitools-rust`。Windows 使用对应绝对路径；本地目录安装不会自动跟随 Git 更新。推荐使用具名 `.tgz` 成品包：它提供对应的校验值，并保留 Unix executable 权限。
+在 [Release](https://github.com/ZSY007/pitools-rust/releases/tag/v0.1.13) 下载 `pitools-rust-0.1.13.tgz`，按 `SHA256SUMS` 校验后解压到稳定目录，再 `pi install /absolute/path/pitools-rust`。Windows 使用对应绝对路径；本地目录安装不会自动跟随 Git 更新。推荐使用具名 `.tgz` 成品包：它提供对应的校验值，并保留 Unix executable 权限。
 
 ## 使用
 
@@ -81,16 +81,20 @@ pi install git:github.com/ZSY007/pitools-rust
 ### 工作状态
 
 ```text
-● 🌗 ⏵ 检查工具结果 · 总21s  │  pitools · 第 3 轮 · 12 个事件
+● π ··· ⏵ 检查工具结果 · 总21s  │  pitools · 第 3 轮 · 12 个事件
 ```
 
-活动位于最左侧，文字统一使用主题强调色。只有 `●` 变色：灰色待机/运行、绿色结束、红色最近工具失败或请求错误；红色不一定表示整项任务失败。待机与完成后保持静态。
+活动位于最左侧，文字统一使用主题强调色。只有 `●` 变色：蓝色待机/运行、绿色结束、红色最近工具失败或请求错误；红色不一定表示整项任务失败。待机与完成后保持静态。
 
-默认 `moon8` 八帧/120ms，支持 35 套帧和 `random`。旁白只来自可见回复行首的 `⏵`，不读取隐藏思考或签名，不修改原始回复。
+默认 `pi`：固定 `π` 标识，三格小点每 240ms 依次出现，整项始终占五列，不让后面的文字左右跳。待机/完成后清空小点，保留静止 `π`，不继续运行动画时钟。原有 35 套预设保留，月相可用 `frames moon8` 选回；`random` 仍从原来的 35 套中选择。已保存的帧偏好不会被升级强制覆盖，当前分支可执行 `/pitools activity frames pi` 切换。
+
+旁白只来自可见回复行首的 `⏵`，不读取隐藏思考或签名，不修改原始回复。
 
 ```text
 /pitools activity help
 /pitools activity frames list
+/pitools activity frames pi
+/pitools activity frames moon8
 /pitools activity frames random
 /pitools activity lang zh
 /pitools activity lang en
@@ -119,7 +123,7 @@ pi update git:github.com/ZSY007/pitools-rust
 pi remove git:github.com/ZSY007/pitools-rust
 ```
 
-更新后手动 `/reload`、`/pitools version`。**不要裸跑 `pi update`：它更新 Pi 自身。** 固定版本可使用 `git:github.com/ZSY007/pitools-rust@v0.1.12`，tag/commit 不随默认分支更新。
+更新后手动 `/reload`、`/pitools version`。**不要裸跑 `pi update`：它更新 Pi 自身。** 固定版本可使用 `git:github.com/ZSY007/pitools-rust@v0.1.13`，tag/commit 不随默认分支更新。
 
 ## 数据与安全
 

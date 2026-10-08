@@ -1,5 +1,5 @@
 // Pure state and display helpers. No filesystem, networking, or process access.
-export const CORE_VERSION = '0.1.12';
+export const CORE_VERSION = '0.1.13';
 const UNSAFE_TEXT = /[\r\t\u0000-\u0008\u000b-\u001f\u007f-\u009f\u200b-\u200f\u2028-\u202e\u2060-\u2069]/;
 export function safeText(value) {
   const text = String(value ?? '');

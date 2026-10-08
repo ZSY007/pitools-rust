@@ -3,7 +3,7 @@ import { getLanguageFromPath, getMarkdownTheme, highlightCode } from '@earendil-
 import { Markdown, truncateToWidth, wrapTextWithAnsi } from '@earendil-works/pi-tui';
 import { contentText, safeText } from './core.ts';
 
-export const RENDERER_VERSION = '0.1.12';
+export const RENDERER_VERSION = '0.1.13';
 
 // Fingerprint actual ANSI output, not Theme identity: Pi supplies a stable proxy
 // whose palette may change. Markdown callbacks also follow the global theme.

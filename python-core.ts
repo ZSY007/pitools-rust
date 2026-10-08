@@ -1,4 +1,4 @@
-// Optional Python/Rust activity cores (0.1.12, off by default). The TS ActivityState
+// Optional Python/Rust activity cores (0.1.13; development defaults to TS). The TS ActivityState
 // keeps running as the authoritative fallback; when the user opts in, a private
 // stdin/stdout JSONL worker computes the activity line, status dot and wakeups.
 // Spawned with an explicit interpreter/executable, argument array, shell:false and a
@@ -11,7 +11,7 @@ import { fileURLToPath } from 'node:url';
 import { ActivityState } from './activity.ts';
 import { visibleTextTail } from './core.ts';
 
-export const PYTHON_CORE_VERSION = '0.1.12';
+export const PYTHON_CORE_VERSION = '0.1.13';
 export const RUST_CORE_VERSION = PYTHON_CORE_VERSION;
 export type WorkerKind = 'python' | 'rust';
 const PROTOCOL = 1;

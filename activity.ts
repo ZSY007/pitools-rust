@@ -3,15 +3,19 @@
 // Copyright (c) 2026, chimney (ccch1mneyyy); see data/activity/LICENSE.
 import { safeText, visibleTextTail } from './core.ts';
 import { PHRASES, FRAME_DATA, ACTIVITY_DATA_VERSION } from './data/activity/data.ts';
-export const ACTIVITY_VERSION = '0.1.12';
+export const ACTIVITY_VERSION = '0.1.13';
 export { ACTIVITY_DATA_VERSION };
-export const FRAME_NAMES = Object.keys(FRAME_DATA.presets);
-export const DEFAULT_ACTIVITY = { enabled: true, frames: 'moon8', lang: 'zh', narrate: true, contract: true, phrases: true };
+// Project-owned preset, kept separate from the verbatim upstream data.
+export const PI_PRESET = { frames: ['π ·  ', 'π ·· ', 'π ···'], intervalMs: 240, restFrame: 'π    ' };
+export const ACTIVITY_PRESETS = { ...FRAME_DATA.presets, pi: PI_PRESET };
+const RANDOM_FRAME_NAMES = Object.keys(FRAME_DATA.presets); // Keep legacy random slots/order unchanged.
+export const FRAME_NAMES = Object.keys(ACTIVITY_PRESETS);
+export const DEFAULT_ACTIVITY = { enabled: true, frames: 'pi', lang: 'zh', narrate: true, contract: true, phrases: true };
 export function normalizeActivity(value: any = {}) {
   const out = { ...DEFAULT_ACTIVITY };
   if (!value || typeof value !== 'object') return out;
   for (const key of ['enabled', 'narrate', 'contract', 'phrases']) if (typeof value[key] === 'boolean') out[key] = value[key];
-  if (value.frames === 'random' || Object.hasOwn(FRAME_DATA.presets, value.frames)) out.frames = value.frames;
+  if (value.frames === 'random' || Object.hasOwn(ACTIVITY_PRESETS, value.frames)) out.frames = value.frames;
   if (['zh', 'en', 'auto'].includes(value.lang)) out.lang = value.lang;
   return out;
 }
@@ -93,7 +97,7 @@ export class ActivityState {
   lastNarration = '';
   lastChunkAt: number | undefined;
   doneText = '';
-  presetName = 'moon8';
+  presetName = 'pi';
   endAt: number | undefined;
   failure = false;
   outputTokens = 0;
@@ -101,7 +105,7 @@ export class ActivityState {
   constructor(config = DEFAULT_ACTIVITY) { this.configure(config); }
   configure(config: any) {
     this.config = normalizeActivity(config);
-    this.presetName = this.config.frames === 'random' ? FRAME_NAMES[mixSlot(this.startedAt, 123) % FRAME_NAMES.length] : this.config.frames;
+    this.presetName = this.config.frames === 'random' ? RANDOM_FRAME_NAMES[mixSlot(this.startedAt, 123) % RANDOM_FRAME_NAMES.length] : this.config.frames;
   }
   reset(config = this.config) {
     this.phase = 'idle'; this.startedAt = 0; this.phaseAt = 0; this.thinkingPhases = 0;
@@ -192,13 +196,14 @@ export class ActivityState {
     return pick(tier ?? [...PHRASES.thinking[lang], ...(night ? PHRASES.thinkingNight[lang] : [])], this.startedAt, slot);
   }
   frame(now: number) {
-    const preset = FRAME_DATA.presets[this.presetName];
+    const preset = ACTIVITY_PRESETS[this.presetName];
+    if (!this.live && this.presetName === 'pi') return PI_PRESET.restFrame;
     return preset.frames[Math.floor(Math.max(0, now - this.startedAt) / preset.intervalMs) % preset.frames.length] ?? '';
   }
   line(now: number) {
     if (!this.config.enabled) return '';
     if (this.phase === 'idle') {
-      const frame = FRAME_DATA.presets[this.presetName].frames[0] ?? '';
+      const frame = this.presetName === 'pi' ? PI_PRESET.restFrame : ACTIVITY_PRESETS[this.presetName].frames[0] ?? '';
       return `${frame} ⏵ ${this.lang === 'zh' ? '待机中 · 等待任务' : 'Idle · ready for a task'}`.trim();
     }
     if (this.phase === 'done') return `${this.frame(this.endAt ?? this.startedAt)} ⏵ ${this.config.narrate && this.lastNarration ? this.lastNarration + ' · ' : ''}${this.doneText}`.trim();
@@ -224,7 +229,7 @@ export class ActivityState {
   }
   nextWakeAt(now: number) {
     if (!this.config.enabled || !this.live) return undefined;
-    const preset = FRAME_DATA.presets[this.presetName];
+    const preset = ACTIVITY_PRESETS[this.presetName];
     const next = (anchor: number, interval: number) => anchor + (Math.floor(Math.max(0, now - anchor) / interval) + 1) * interval;
     const tool = [...this.active.values()].at(-1);
     const rare = this.phase === 'thinking' && this.thinkingPhases === 1 && mixSlot(this.startedAt, 0x5EED) % 150 === 0;

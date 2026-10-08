@@ -1,7 +1,7 @@
 // Verbatim data from dsh-working-activity 0.5.1.
 // Copyright (c) 2026, chimney (ccch1mneyyy). BSD-3-Clause; see ./LICENSE.
 // Generated from the adjacent JSON; .ts keeps Pi same-process reloads fresh.
-export const ACTIVITY_DATA_VERSION = '0.1.12';
+export const ACTIVITY_DATA_VERSION = '0.1.13';
 export const PHRASES = {
   "_meta": {
     "source": "dsh-working-activity@0.5.1 lib/types/phrases.js (+ lang.js for UI strings)",

@@ -1,6 +1,6 @@
 {
   "name": "pitools-rust",
-  "version": "0.1.12",
+  "version": "0.1.13",
   "private": true,
   "type": "module",
   "description": "Pi terminal trajectory inspector — RUST activity edition",
