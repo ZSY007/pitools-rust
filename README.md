@@ -59,7 +59,7 @@ pi install git:github.com/ZSY007/pitools-rust
 
 ### 本地归档安装
 
-在 [Release](https://github.com/ZSY007/pitools-rust/releases/tag/v0.1.12) 下载 `pitools-rust-0.1.12.tgz`，按 `SHA256SUMS` 校验后解压到稳定目录，再 `pi install /absolute/path/pitools-rust`。Windows 使用对应绝对路径；本地目录安装不会自动跟随 Git 更新。请选择具名 `.tgz` 成品包，GitHub 自动生成的源码 ZIP 不包含匹配平台 binary。
+在 [Release](https://github.com/ZSY007/pitools-rust/releases/tag/v0.1.12) 下载 `pitools-rust-0.1.12.tgz`，按 `SHA256SUMS` 校验后解压到稳定目录，再 `pi install /absolute/path/pitools-rust`。Windows 使用对应绝对路径；本地目录安装不会自动跟随 Git 更新。推荐使用具名 `.tgz` 成品包：它提供对应的校验值，并保留 Unix executable 权限。
 
 ## 使用
 

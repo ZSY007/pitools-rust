@@ -14,7 +14,7 @@
     ".gitattributes": "b6c0e44e0d6a8e327aa7fad89aec297be73f4f334b55f9c62a977968d2b85f69",
     ".gitignore": "2a9c0b4eb437ee667f0d964e66c8e3b20a624aa2b1535012e125eaa989c90421",
     "LICENSE": "575a831ad2debc466a05a542341e24a8866cfe88eca843a8379a11c05838d769",
-    "README.md": "39094b3c1326152419c8b21847cbbbad4059381accc5c924cb88e4286b230549",
+    "README.md": "25b151db16413bc1eccfa5ab0c22350eeae8341f8d23299b0ff84102fb4be8a9",
     "THIRD_PARTY_NOTICES.md": "a6f5e1bf12cc72f7a8735225ba08bfd01331289dd6a3e16caaae551e903b74b8",
     "activity.ts": "44413815b7d54c91c0c0d72a18d9e0b96504625dbfc70650aa6c1e43e08fb359",
     "bin/aarch64-apple-darwin/build-info.json": "4fcfa74505bdd181908698e7765dde509bcc4d9904492e1fef0f88f07bb7af56",
@@ -124,5 +124,5 @@
     "rendering.ts": "50a1bcc7a08e62eaebbb299845ebe2751842ffa66ca8afa6b64da9cc0e5e79d2",
     "ui.ts": "976153aa27c5fa724bb5201d4395db6ab967d8cac46a3dfcbb7665b82394086c"
   },
-  "documentationCommit": "4c6679d09ea5f806e37dda871a1035e7ed1776ed"
+  "documentationCommit": "4b6bf08c5f39994e9127c5d2e9cdcb48f95591b8"
 }
